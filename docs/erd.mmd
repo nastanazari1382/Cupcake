@@ -1,0 +1,38 @@
+erDiagram
+    users ||--o{ orders : has
+    orders ||--|{ orderlines : contains
+    bottoms ||--o{ orderlines : "used in"
+    toppings ||--o{ orderlines : "used in"
+
+    users {
+        SERIAL id PK
+        VARCHAR email UK
+        VARCHAR password
+        NUMERIC balance "CHECK >= 0"
+        VARCHAR role "customer/admin"
+    }
+    orders {
+        SERIAL id PK
+        INT user_id FK
+        TIMESTAMP order_date
+        BOOLEAN paid
+        BOOLEAN picked_up
+    }
+    orderlines {
+        SERIAL id PK
+        INT order_id FK "ON DELETE CASCADE"
+        INT bottom_id FK
+        INT topping_id FK
+        INT quantity "CHECK > 0"
+        NUMERIC unit_price
+    }
+    bottoms {
+        SERIAL id PK
+        VARCHAR name UK
+        NUMERIC price
+    }
+    toppings {
+        SERIAL id PK
+        VARCHAR name UK
+        NUMERIC price
+    }
