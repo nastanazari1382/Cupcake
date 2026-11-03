@@ -1,0 +1,39 @@
+@startuml domaenemodel
+skinparam monochrome true
+skinparam shadowing false
+hide circle
+hide methods
+
+class Kunde {
+  email
+  adgangskode
+  saldo
+  rolle
+}
+
+class Ordre {
+  dato
+  betalt
+  afhentet
+}
+
+class Ordrelinje {
+  antal
+  stykpris
+}
+
+class Bund {
+  navn
+  pris
+}
+
+class Top {
+  navn
+  pris
+}
+
+Kunde "1" -- "0..*" Ordre : har
+Ordre "1" -- "1..*" Ordrelinje : indeholder
+Ordrelinje "*" -- "1" Bund : har bund
+Ordrelinje "*" -- "1" Top : har top
+@enduml
