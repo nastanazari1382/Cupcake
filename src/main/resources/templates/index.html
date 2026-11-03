@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Forside</title>
 </head>
 <body>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+<main>
 <h1>Copenhagen Cupcakes</h1>
 
-<a href="/login" class="knap">Log ind</a>
-
+</main>
+<footer></footer>
 </body>
 </html>

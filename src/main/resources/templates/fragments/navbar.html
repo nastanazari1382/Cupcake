@@ -1,0 +1,12 @@
+<nav th:fragment="navbar">
+    <a href="/">Copenhagen Cupcakes</a>
+
+    <div th:if="${session.currentUser == null}">
+        <a href="/login">Log ind</a>
+    </div>
+
+    <div th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.email}"></span>
+        <a href="/logout">Log ud</a>
+    </div>
+</nav>
