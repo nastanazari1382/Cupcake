@@ -1,10 +1,54 @@
-Cupcake projekt
-Baggrund
-Vi har landet en vigtig opgave fra Copenhagen Cupcakes. 
-Vi har indsamlet nogle krav og lavet en halvfærdig mockup af en tænkt forside. 
-En mockup er en meget løs skitse, som viser hvordan det færdige website skal se ud. Det er selvfølgelig ikke alt som er med, 
-og som er tænkt igennem, så det er vores opgave at stille spørgsmål til manglende funktionalitet, komme med forslag osv.
+# Copenhagen Cupcakes
 
-Når man som leverandør skal løse sådan en opgave, er det godt at dele opgaven op i små etaper. 
-Så tænk fra starten over hvor lidt vi kan lave for at få den første prototype i luften. 
-Med andre ord: vi skal ikke lade os forblænde af farver og striber og mange funktionaliteter. Vi æder elefanten lidt ad gangen.
+Webshop til bageriet Copenhagen Cupcakes, lavet som 2. semesterprojekt på datamatikeruddannelsen (EK Lyngby).
+Kunder kan sammensætte cupcakes af en bund og en top, lægge dem i kurven og betale med saldoen på deres konto.
+Admin kan se alle ordrer og kunder, indsætte beløb på en kundes saldo og slette eller markere ordrer som afhentet.
+
+## Gruppe
+- Besima
+- Nasta
+- Rebecca
+- Louise
+
+## Teknologier
+- Java 21, Maven
+- Javalin 7 og Thymeleaf
+- PostgreSQL med JDBC og HikariCP
+- HTML og CSS
+
+## Kom i gang
+1. Opret en database med navnet `cupcake` i pgAdmin.
+2. Kør `docs/cupcake.sql` i Query Tool (F5). Scriptet opretter tabellerne, bunde, toppe og to testbrugere.
+3. Tjek brugernavn og kode til databasen i `Main.java` (standard: `postgres` / `postgres`).
+4. Kør `Main` og åbn http://localhost:7070
+
+### Testbrugere
+| Rolle | Email | Kode |
+|---|---|---|
+| Admin | admin@cupcake.dk | 1234 |
+| Kunde | kunde@mail.dk | 1234 |
+
+## Projektstruktur
+```
+src/main/java
+├── configuration   ThymeleafConfig
+├── controllers     routes og håndtering af requests
+├── entities        Bottom, Topping, User, Order, Orderline
+├── persistence     ConnectionPool og mappers (SQL)
+└── Main            starter Javalin
+src/main/resources
+├── public          CSS og billeder
+└── templates       Thymeleaf-sider (.html)
+docs                domænemodel, ERD, navigationsdiagram og SQL-script
+```
+
+## Dokumentation
+- Domænemodel: `docs/domaenemodel.puml`
+- ERD: `docs/erd.mmd`
+- Navigationsdiagram: `docs/`
+- User stories og kanban: GitHub Projects
+
+## Arbejdsgang
+- Hver user story laves på sin egen branch, fx `feature/us-2-opret-konto`.
+- Dokumentation laves på `docs/...`-branches.
+- Alt kommer ind på `master` via en pull request, som et andet gruppemedlem reviewer.
