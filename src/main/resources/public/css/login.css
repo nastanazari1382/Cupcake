@@ -1,0 +1,85 @@
+/* Kun til login-siden: kortet og formularen */
+
+/* ---------- Kort ---------- */
+.kort {
+    width: 100%;
+    max-width: 440px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--kant);
+    border-radius: 16px;
+}
+
+.kort h1 {
+    margin: 0 0 1.5rem;
+    text-align: center;
+    font-size: 2.375rem;
+}
+
+/* ---------- Formular ---------- */
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 1rem;
+    background: #fff;
+    border: 2px solid var(--felt-kant);
+    border-radius: 10px;
+    font: inherit;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--pink);
+}
+
+button {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--brun);
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.error {
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    background: #FCE8EC;
+    color: #A3304F;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.skift-tekst {
+    margin: 1.25rem 0 0;
+    text-align: center;
+    color: var(--daempet);
+}
+
+.skift-tekst a {
+    color: var(--pink);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 600px) {
+    .kort {
+        padding: 1.5rem;
+    }
+}

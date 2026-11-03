@@ -1,0 +1,18 @@
+<nav class="navbar" th:fragment="navbar">
+    <a href="/" class="logo">Copenhagen <span>Cupcakes</span></a>
+
+    <div class="nav-links">
+        <a href="/#bestil">Bestil</a>
+
+        <th:block th:if="${session.currentUser == null}">
+            <a href="/login">Log ind</a>
+        </th:block>
+
+        <th:block th:if="${session.currentUser != null}">
+            <span class="nav-email" th:text="${session.currentUser.email}"></span>
+            <a href="/logout">Log ud</a>
+        </th:block>
+
+        <a href="/kurv" class="kurv-knap">Kurv <span class="kurv-antal">0</span></a>
+    </div>
+</nav>
