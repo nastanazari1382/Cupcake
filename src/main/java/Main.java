@@ -1,11 +1,22 @@
+import configuration.ThymeleafConfig;
+import controllers.MainController;
+import io.javalin.Javalin;
+import io.javalin.rendering.template.JavalinThymeleaf;
+import persistence.ConnectionPool;
 
 public class Main {
-    public static void main(String[] args) {
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/%s?currentSchema=public";
+    private static final String DB = "cupcake";
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args){
+        Javalin.create(config -> {
+            config.staticFiles.add("/public");
+            config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
+            new MainController().setRoutes(config); // Fælles controller
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+        }).start(7070);
     }
 }
