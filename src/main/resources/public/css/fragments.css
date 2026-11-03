@@ -1,0 +1,87 @@
+/* Fragmenter: navbar og footer. Bruges på alle sider. */
+
+/* ---------- Navbar ---------- */
+.navbar {
+    width: 100%;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-overskrift);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--brun);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--pink);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--tekst);
+    text-decoration: none;
+}
+
+.nav-email {
+    color: var(--daempet);
+    font-size: 0.9rem;
+}
+
+.nav-links .kurv-knap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--brun);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.kurv-antal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.35rem;
+    background: var(--pink);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    padding: 1.5rem;
+    background: var(--footer);
+    color: #F5ECE4;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ---------- Farver og skrifttyper ---------- */
+:root {
+    --bg: #FFF8F1;
+    --tekst: #2A1E19;
+    --brun: #5B3A29;
+    --pink: #D9577A;
+    --footer: #2B1D16;
+    --kant: #F1E4DA;
+    --felt-kant: #EDDCD0;
+    --daempet: #7A655A;
+
+    --font-overskrift: 'Fraunces', Georgia, serif;
+    --font-tekst: 'Inter', system-ui, sans-serif;
+}
+
+/* ---------- Grundstil ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--tekst);
+    font-family: var(--font-tekst);
+}
+
+main {
+    flex: 1;
+    padding: 3rem 1rem;
+}
+
+h1 {
+    font-family: var(--font-overskrift);
+    font-weight: 700;
+    color: var(--brun);
+}

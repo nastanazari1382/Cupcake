@@ -2,15 +2,18 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Forside</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
 </head>
 <body>
 <header th:replace="~{fragments/navbar :: navbar}"></header>
+
 <main>
-<h1>Copenhagen Cupcakes</h1>
 
 </main>
-<footer></footer>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
