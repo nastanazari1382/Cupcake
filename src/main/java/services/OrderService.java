@@ -1,7 +1,11 @@
 package services;
 
 import entities.Orderline;
+import entities.User;
+import exceptions.DatabaseException;
 import persistence.ConnectionPool;
+import persistence.OrderMapper;
+import persistence.UserMapper;
 
 import java.util.List;
 
@@ -25,4 +29,20 @@ public class OrderService {
         }
         return total;
     }
+
+    public void placeOrder(User user, List<Orderline>cart)throws DatabaseException {
+    double total = calculateTotal(cart);
+    if(user.getBalance()<total){
+        throw new DatabaseException("Du har ikke nok penge på kontoen");
+    }
+        int orderId = OrderMapper.createOrder(user.getId(),connectionPool);
+        for(Orderline line : cart){
+            OrderMapper.createOrderline(orderId, line, connectionPool);
+        }
+        double newBalance = user.getBalance() - total;
+        UserMapper.updateBalance(user.getId(), newBalance, connectionPool);
+        user.setBalance(newBalance);
+    }
+
+
 }
