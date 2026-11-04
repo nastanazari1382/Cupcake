@@ -14,9 +14,9 @@
 <main>
     <div class="kort kurv">
         <h1>Din kurv</h1>
-        <p th:if="${cart == null}">Din kurv er tom</p>
+        <p th:if="${#lists.isEmpty(cart)}">Din kurv er tom</p>
 
-        <table th:if="${cart != null}">
+        <table th:unless="${#lists.isEmpty(cart)}">
             <thead>
             <tr>
                 <th>Cupcake</th>
@@ -28,14 +28,14 @@
             <tr th:each="line : ${cart}">
                 <td th:text="${line.bottom.name + ' + ' + line.topping.name}"></td>
                 <td th:text="${line.quantity}"></td>
-                <td th:text="${line.totalPrice + ' kr'}"></td>
+                <td th:text="${#numbers.formatDecimal(line.totalPrice, 1, 2, 'COMMA') + ' kr'}"></td>
             </tr>
             </tbody>
         </table>
 
-        <p class="total" th:if="${cart != null}" th:text="${'Total: ' + total + ' kr'}"></p>
+        <p class="total" th:unless="${#lists.isEmpty(cart)}" th:text="${'Total: ' + #numbers.formatDecimal(total, 1, 2, 'COMMA') + ' kr'}"></p>
 
-        <form th:if="${cart != null}" method="post" action="/kurv/betal">
+        <form th:unless="${#lists.isEmpty(cart)}" method="post" action="/kurv/betal">
             <button type="submit">Betal og bestil</button>
         </form>
     </div>
