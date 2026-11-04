@@ -11,6 +11,20 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
 <main>
+    <form>
+        <label for="bottom">Bund</label>
+        <select id="bottom" name="bottom">
+            <option th:each="bottom : ${bottoms}"
+                    th:value="${bottom.id}"
+                    th:text="${bottom.name}">Bund</option>
+        </select>
+        <label for="topping">Topping</label>
+        <select id="topping" name="topping">
+            <option th:each="topping : ${toppings}"
+                    th:value="${topping.id}"
+                    th:text="${topping.name}">Topping</option>
+        </select>
+    </form>
 
 </main>
 
