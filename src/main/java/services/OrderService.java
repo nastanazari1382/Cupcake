@@ -12,11 +12,12 @@ import java.util.List;
 public class OrderService {
     private final ConnectionPool connectionPool;
 
+    // The pool is used later when orders are saved
     public OrderService(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
-    // Summen af alle ordrelinjer i kurven. En tom eller manglende kurv giver 0.
+    // Returns the sum of all orderlines in the cart. An empty or missing cart gives 0.
     public double calculateTotal(List<Orderline> cart) {
         if (cart == null) {
             return 0;

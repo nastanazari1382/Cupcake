@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderMapper {
+    // Creates a new order for the user and returns its id
     public static int createOrder(int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO orders (user_id) VALUES (?) RETURNING id";
 
@@ -28,6 +29,7 @@ public class OrderMapper {
         }
     }
 
+    // Saves one orderline (bottom, topping, quantity and unit price) on the order
     public static void createOrderline(int orderId, Orderline line, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO orderlines (order_id, bottom_id, topping_id, quantity, unit_price) VALUES (?, ?, ?, ?, ?)";
 
