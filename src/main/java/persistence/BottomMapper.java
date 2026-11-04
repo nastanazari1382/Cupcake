@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BottomMapper {
 
+    // Gets all bottoms from the database
     public static List<Bottom> getAllBottoms(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM bottoms";
         List<Bottom> bottoms = new ArrayList<>();

@@ -17,6 +17,7 @@ public class UserController {
         this.connectionPool = connectionPool;
     }
 
+    // Registers the routes for login and creating an account
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/login", ctx -> ctx.render("login.html"));
         config.routes.get("/opret-konto", ctx -> ctx.render("opretKonto.html"));
@@ -24,17 +25,18 @@ public class UserController {
     }
 
 
+    // Creates a new account, logs the user in and sends them to the cart
     private void createUser(Context ctx) {
         String email = ctx.formParam("email") == null ? "" : ctx.formParam("email").trim().toLowerCase();
         String password1 = ctx.formParam("password");
         String password2 = ctx.formParam("password2");
 
         if (email.isEmpty() || password1 == null || password1.isEmpty()) {
-            visFejl(ctx, "Udfyld både email og adgangskode", email);
+            showError(ctx, "Udfyld både email og adgangskode", email);
             return;
         }
         if (!password1.equals(password2)) {
-            visFejl(ctx, "De to adgangskoder er ikke ens", email);
+            showError(ctx, "De to adgangskoder er ikke ens", email);
             return;
         }
 
@@ -43,12 +45,13 @@ public class UserController {
             ctx.sessionAttribute("currentUser", user);
             ctx.redirect("/kurv");
         } catch (DatabaseException e) {
-            visFejl(ctx, e.getMessage(), email);
+            showError(ctx, e.getMessage(), email);
         }
     }
 
-    private void visFejl(Context ctx, String besked, String email) {
-        ctx.render("opretKonto.html", Map.of("error", besked, "email", email));
+    // Shows the create account page again with an error message
+    private void showError(Context ctx, String message, String email) {
+        ctx.render("opretKonto.html", Map.of("error", message, "email", email));
     }
 
 }
