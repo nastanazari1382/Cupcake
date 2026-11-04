@@ -24,13 +24,13 @@ public class MainController {
     }
 
     private void index(Context ctx) {
-        try{
-            List<Bottom>bottoms = BottomMapper.getAllBottoms(connectionPool);
-            List<Topping>toppings = ToppingMapper.getAllToppings(connectionPool);
+        try {
+            List<Bottom> bottoms = BottomMapper.getAllBottoms(connectionPool);
+            List<Topping> toppings = ToppingMapper.getAllToppings(connectionPool);
             ctx.attribute("bottoms", bottoms);
             ctx.attribute("toppings", toppings);
             ctx.render("index.html");
-        }catch (DatabaseException e){
+        } catch (DatabaseException e) {
             ctx.attribute("error", e.getMessage());
             ctx.render("index.html");
         }
