@@ -10,10 +10,10 @@
 }
 
 .logo {
-    font-family: var(--font-overskrift);
+    font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--brun);
+    color: var(--brown);
     text-decoration: none;
 }
 
@@ -28,26 +28,26 @@
 }
 
 .nav-links a {
-    color: var(--tekst);
+    color: var(--text);
     text-decoration: none;
 }
 
 .nav-email {
-    color: var(--daempet);
+    color: var(--muted);
     font-size: 0.9rem;
 }
 
-.nav-links .kurv-knap {
+.nav-links .cart-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.6rem 1rem;
-    background: var(--brun);
+    background: var(--brown);
     color: #fff;
     border-radius: 10px;
 }
 
-.kurv-antal {
+.cart-count {
     display: inline-flex;
     align-items: center;
     justify-content: center;
