@@ -7,6 +7,7 @@ public class MainController {
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/", ctx -> index(ctx));
         config.routes.get("/login", ctx -> login(ctx));
+        config.routes.get("/opret-konto", ctx -> opretKonto(ctx));
     }
 
     private void index(Context ctx) {
@@ -17,4 +18,8 @@ public class MainController {
     private void login(Context ctx) {
         ctx.render("login.html");
 }
+
+    private void opretKonto(Context ctx) {
+        ctx.render("opretKonto.html");
+    }
 }
