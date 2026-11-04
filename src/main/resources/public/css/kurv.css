@@ -1,0 +1,35 @@
+/* Kun til kurv-siden */
+
+/* Bredere kort end på login-siden */
+.kurv {
+    max-width: 720px;
+}
+
+/* ---------- Tabel ---------- */
+.kurv table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+}
+
+.kurv th,
+.kurv td {
+    padding: 0.9rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--kant);
+}
+
+.kurv th {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--daempet);
+}
+
+/* ---------- Total ---------- */
+.total {
+    margin: 0 0 1.5rem;
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--brun);
+}
