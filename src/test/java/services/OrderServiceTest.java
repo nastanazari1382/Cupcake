@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class OrderServiceTest {
     private OrderService orderService;
 
-    @BeforeEach
     // Runs before each test and creates a fresh OrderService
+    @BeforeEach
     void setUp() {
         // calculateTotal does not use the database, so no real ConnectionPool is needed
         orderService = new OrderService(null);
