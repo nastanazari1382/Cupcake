@@ -1,4 +1,4 @@
-/* Kun til forsiden: "Byg din cupcake"-boksen */
+/* Front page only: the "Byg din cupcake" box */
 .bestil-boks {
 
     max-width: 720px;
@@ -31,18 +31,18 @@
 
     color: #fff;
 }
-/* Felterne og knappen på én række */
+/* Fields and button on one row */
 .bestil-boks form {
 
     display: flex;
 
     gap: 1rem;
 
-    align-items: flex-end;   /* knappen flugter med bunden af felterne */
+    align-items: flex-end;   /* button lines up with the bottom of the fields */
 }
 .bestil-boks .felt {
 
-    flex: 1;                 /* felterne deler pladsen ligeligt */
+    flex: 1;                 /* fields share the space equally */
 }
 .bestil-boks label {
 
@@ -57,13 +57,13 @@
 
 .bestil-boks button {
 
-    width: auto;             /* base.css gør knapper 100% brede – ikke her */
+    width: auto;             /* base.css makes buttons 100% wide – not here */
     height: 3rem;
     padding: 0 1.75rem;
 
     background: var(--pink);
 }
-/* Mobil: felterne under hinanden */
+/* Mobile: fields stacked */
 @media (max-width: 600px) {
 
     .bestil-boks form {

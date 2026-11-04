@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
-/* ---------- Farver og skrifttyper ---------- */
+/* ---------- Colors and fonts ---------- */
 :root {
     --bg: #FFF8F1;
     --tekst: #2A1E19;
@@ -15,7 +15,7 @@
     --font-tekst: 'Inter', system-ui, sans-serif;
 }
 
-/* ---------- Grundstil ---------- */
+/* ---------- Base style ---------- */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -41,7 +41,7 @@ h1 {
     color: var(--brun);
 }
 
-/* ---------- Fælles: kort og knapper ---------- */
+/* ---------- Shared: cards and buttons ---------- */
 .kort {
     width: 100%;
     max-width: 440px;
@@ -82,7 +82,7 @@ button:hover {
     text-align: center;
 }
 
-/* ---------- Mobil ---------- */
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
     .kort {
         padding: 1.5rem;

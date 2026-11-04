@@ -1,4 +1,4 @@
-/* Fragmenter: navbar og footer. Bruges på alle sider. */
+/* Fragments: navbar and footer. Used on all pages. */
 
 /* ---------- Navbar ---------- */
 .navbar {
@@ -72,7 +72,7 @@ footer p {
     margin: 0;
 }
 
-/* ---------- Mobil ---------- */
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
     .navbar {
         flex-wrap: wrap;

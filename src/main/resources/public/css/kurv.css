@@ -1,11 +1,11 @@
-/* Kun til kurv-siden */
+/* Cart page only */
 
-/* Bredere kort end på login-siden */
+/* Wider card than on the login page */
 .kurv {
     max-width: 720px;
 }
 
-/* ---------- Tabel ---------- */
+/* ---------- Table ---------- */
 .kurv table {
     width: 100%;
     margin-bottom: 1.5rem;
