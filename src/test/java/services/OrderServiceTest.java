@@ -60,4 +60,10 @@ class OrderServiceTest {
         cart.add(new Orderline(new Bottom(1, "Chokolade", 5), new Topping(2, "Blåbær", 5), 2));
         assertThrows(DatabaseException.class, () -> orderService.placeOrder(user, cart));
     }
+
+    @Test
+    void emptyCartThrowsException() {
+        User user = new User(1, "test@test.dk", "1234", 100, "customer");
+        assertThrows(DatabaseException.class, () -> orderService.placeOrder(user, new ArrayList<>()));
+    }
 }

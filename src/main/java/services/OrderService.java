@@ -30,19 +30,28 @@ public class OrderService {
         return total;
     }
 
-    public void placeOrder(User user, List<Orderline>cart)throws DatabaseException {
-    double total = calculateTotal(cart);
-    if(user.getBalance()<total){
-        throw new DatabaseException("Du har ikke nok penge på kontoen");
-    }
-        int orderId = OrderMapper.createOrder(user.getId(),connectionPool);
-        for(Orderline line : cart){
+    // Places the order: saves the order and its orderlines and withdraws the amount from the user's balance
+    public void placeOrder(User user, List<Orderline> cart) throws DatabaseException {
+        if (cart == null || cart.isEmpty()) {
+            throw new DatabaseException("Kurven er tom");
+        }
+
+        double total = calculateTotal(cart);
+        if (user.getBalance() < total) {
+            throw new DatabaseException("Du har ikke nok penge på kontoen");
+        }
+
+        int orderId = OrderMapper.createOrder(user.getId(), connectionPool);
+        for (Orderline line : cart) {
             OrderMapper.createOrderline(orderId, line, connectionPool);
         }
+
         double newBalance = user.getBalance() - total;
         UserMapper.updateBalance(user.getId(), newBalance, connectionPool);
         user.setBalance(newBalance);
     }
+
+
 
 
 }
