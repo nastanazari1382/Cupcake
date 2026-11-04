@@ -55,6 +55,25 @@ public class UserMapper {
         }
     }
 
+    // NY til US-1: sætter kundens nye saldo, når der betales
+    public static void updateBalance(int userId, double newBalance, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE users SET balance = ? WHERE id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, newBalance);
+            ps.setInt(2, userId);
+
+            int rows = ps.executeUpdate();
+            if (rows != 1) {
+                throw new DatabaseException("Saldoen kunne ikke opdateres");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved opdatering af saldo: " + e.getMessage());
+        }
+    }
+
     // Postgres' fejlkode for "unique constraint overtrådt" (her: emailen findes allerede)
     private static final String UNIQUE_VIOLATION = "23505";
 
