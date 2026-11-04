@@ -14,6 +14,24 @@
 <main>
 
     <h1>Din kurv</h1>
+    <p th:if="${cart == null}">Din kurv er tom</p>
+
+    <table th:if="${cart != null}">
+        <thead>
+        <tr>
+            <th>Cupcake</th>
+            <th>Antal</th>
+            <th>Pris</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="line : ${cart}">
+            <td th:text="${line.bottom.name + ' + ' + line.topping.name}"></td>
+            <td th:text="${line.quantity}"></td>
+            <td th:text="${line.totalPrice + ' kr'}"></td>
+        </tr>
+        </tbody>
+    </table>
 
 </main>
 
