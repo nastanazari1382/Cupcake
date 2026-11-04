@@ -12,7 +12,33 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
 <main>
+    <div class="kort kurv">
+        <h1>Din kurv</h1>
+        <p th:if="${cart == null}">Din kurv er tom</p>
 
+        <table th:if="${cart != null}">
+            <thead>
+            <tr>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="line : ${cart}">
+                <td th:text="${line.bottom.name + ' + ' + line.topping.name}"></td>
+                <td th:text="${line.quantity}"></td>
+                <td th:text="${line.totalPrice + ' kr'}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="total" th:if="${cart != null}" th:text="${'Total: ' + total + ' kr'}"></p>
+
+        <form th:if="${cart != null}" method="post" action="/kurv/betal">
+            <button type="submit">Betal og bestil</button>
+        </form>
+    </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>

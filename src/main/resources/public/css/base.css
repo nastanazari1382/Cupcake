@@ -40,3 +40,43 @@ h1 {
     font-weight: 700;
     color: var(--brun);
 }
+
+/* ---------- Fælles: kort og knapper ---------- */
+.kort {
+    width: 100%;
+    max-width: 440px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--kant);
+    border-radius: 16px;
+}
+
+.kort h1 {
+    margin: 0 0 1.5rem;
+    text-align: center;
+    font-size: 2.375rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--brun);
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 600px) {
+    .kort {
+        padding: 1.5rem;
+    }
+}
