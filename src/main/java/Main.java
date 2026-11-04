@@ -3,6 +3,7 @@ import controllers.MainController;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
+import controllers.UserController;
 
 public class Main {
     private static final String USER = "postgres";
@@ -16,6 +17,7 @@ public class Main {
             config.staticFiles.add("/public");
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
             new MainController().setRoutes(config); // Fælles controller
+            new UserController(connectionPool).setRoutes(config);
 
         }).start(7070);
     }
