@@ -27,6 +27,6 @@ public class OrderController {
 
         ctx.attribute("cart", cart);
         ctx.attribute("total", total);
-        ctx.render("kurv.html");
+        ctx.render("cart.html");
     }
 }

@@ -19,7 +19,7 @@ public class UserController {
     // Registers the routes for login and creating an account
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/login", ctx -> ctx.render("login.html"));
-        config.routes.get("/opret-konto", ctx -> ctx.render("opretKonto.html"));
+        config.routes.get("/opret-konto", ctx -> ctx.render("createAccount.html"));
         config.routes.post("/opret-konto", ctx -> createUser(ctx));
         config.routes.post("/login", ctx -> login(ctx));
         config.routes.get("/logout", ctx -> logout(ctx));
@@ -72,7 +72,7 @@ public class UserController {
 
     // Shows the create account page again with an error message
     private void showError(Context ctx, String message, String email) {
-        ctx.render("opretKonto.html", Map.of("error", message, "email", email));
+        ctx.render("createAccount.html", Map.of("error", message, "email", email));
     }
 
 }

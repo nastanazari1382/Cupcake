@@ -13,6 +13,6 @@
             <a href="/logout">Log ud</a>
         </th:block>
 
-        <a href="/kurv" class="cart-button">Kurv <span class="cart-count">0</span></a>
+        <a href="/kurv" class="cart-button">Kurv <span class="cart-count" th:text="${session.cart == null ? 0 : session.cart.size()}">0</span></a>
     </div>
 </nav>
