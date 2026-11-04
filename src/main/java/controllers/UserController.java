@@ -1,6 +1,5 @@
 package controllers;
 
-
 import entities.User;
 import exceptions.DatabaseException;
 import io.javalin.config.JavalinConfig;
@@ -25,7 +24,6 @@ public class UserController {
         config.routes.post("/login", ctx -> login(ctx));
         config.routes.get("/logout", ctx -> logout(ctx));
     }
-
 
     // Creates a new account, logs the user in and sends them to the cart
     private void createUser(Context ctx) {

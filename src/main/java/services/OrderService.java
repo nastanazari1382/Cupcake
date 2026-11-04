@@ -12,7 +12,7 @@ import java.util.List;
 public class OrderService {
     private final ConnectionPool connectionPool;
 
-    // The pool is used later when orders are saved
+    // The pool is passed on to the mappers
     public OrderService(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }

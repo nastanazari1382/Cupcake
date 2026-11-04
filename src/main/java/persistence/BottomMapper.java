@@ -32,6 +32,5 @@ public class BottomMapper {
             throw new DatabaseException("Fejl ved indhentning af bunde: " + e.getMessage());
         }
         return bottoms;
-
     }
 }
