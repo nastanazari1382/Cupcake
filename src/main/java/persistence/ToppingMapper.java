@@ -32,7 +32,6 @@ public class ToppingMapper {
             throw new DatabaseException("Fejl ved indhentning af toppe: " + e.getMessage());
         }
         return toppings;
-
     }
 }
 
