@@ -17,7 +17,7 @@ public class Main {
         Javalin.create(config -> {
             config.staticFiles.add("/public");
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
-            new MainController().setRoutes(config); // Fælles controller
+            new MainController(connectionPool).setRoutes(config); // Fælles controller
             new OrderController(connectionPool).setRoutes(config);
             new UserController(connectionPool).setRoutes(config);
 
