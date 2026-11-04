@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Opret konto</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main>
+    <div class="kort">
+        <h1>Opret konto</h1>
+
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+
+        <form th:action="@{/opret-konto}" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" th:value="${email}" required>
+
+            <label for="password">Adgangskode</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="password2">Gentag adgangskode</label>
+            <input type="password" id="password2" name="password2" required>
+
+            <button type="submit">Opret konto</button>
+        </form>
+
+        <p class="skift-tekst">Allerede kunde? <a href="/login">Log ind</a></p>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

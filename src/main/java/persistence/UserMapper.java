@@ -33,4 +33,29 @@ public class UserMapper {
             }
         }
 
+
+    // NY til US-2: role = 'customer' og balance = 0 kommer fra DEFAULT i tabellen
+    public static User createUser(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO users (email, password) VALUES (?, ?) RETURNING id, balance, role";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return new User(rs.getInt("id"), email, password, rs.getDouble("balance"), rs.getString("role"));
+        } catch (SQLException e) {
+            if (UNIQUE_VIOLATION.equals(e.getSQLState())) {
+                throw new DatabaseException("Der findes allerede en konto med den email");
+            }
+            throw new DatabaseException("Fejl ved oprettelse af konto: " + e.getMessage());
+        }
+    }
+
+    // Postgres' fejlkode for "unique constraint overtrådt" (her: emailen findes allerede)
+    private static final String UNIQUE_VIOLATION = "23505";
+
 }

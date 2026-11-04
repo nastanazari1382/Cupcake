@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kurv</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/kurv.css}">
+</head>
+<body>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main>
+    <div class="kort kurv">
+        <h1>Din kurv</h1>
+        <p th:if="${#lists.isEmpty(cart)}">Din kurv er tom</p>
+
+        <table th:unless="${#lists.isEmpty(cart)}">
+            <thead>
+            <tr>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="line : ${cart}">
+                <td th:text="${line.bottom.name + ' + ' + line.topping.name}"></td>
+                <td th:text="${line.quantity}"></td>
+                <td th:text="${#numbers.formatDecimal(line.totalPrice, 1, 2, 'COMMA') + ' kr'}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="total" th:unless="${#lists.isEmpty(cart)}" th:text="${'Total: ' + #numbers.formatDecimal(total, 1, 2, 'COMMA') + ' kr'}"></p>
+
+        <form th:unless="${#lists.isEmpty(cart)}" method="post" action="/kurv/betal">
+            <button type="submit">Betal og bestil</button>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
