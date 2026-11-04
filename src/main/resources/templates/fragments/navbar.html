@@ -2,7 +2,7 @@
     <a href="/" class="logo">Copenhagen <span>Cupcakes</span></a>
 
     <div class="nav-links">
-        <a href="/#bestil">Bestil</a>
+        <a href="/#order">Bestil</a>
 
         <th:block th:if="${session.currentUser == null}">
             <a href="/login">Log ind</a>
@@ -13,6 +13,6 @@
             <a href="/logout">Log ud</a>
         </th:block>
 
-        <a href="/kurv" class="kurv-knap">Kurv <span class="kurv-antal">0</span></a>
+        <a href="/kurv" class="cart-button">Kurv <span class="cart-count">0</span></a>
     </div>
 </nav>

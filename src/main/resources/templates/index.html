@@ -16,7 +16,7 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 <main>
 
-    <section id="bestil" class="bestil-boks">
+    <section id="order" class="order-box">
 
         <h1>Byg din cupcake</h1>
 
@@ -24,7 +24,7 @@
 
         <form th:action="@{/kurv/tilfoej}" method="post">
 
-            <div class="felt">
+            <div class="field">
 
                 <label for="bottom">Bund</label>
 
@@ -40,7 +40,7 @@
 
             </div>
 
-            <div class="felt">
+            <div class="field">
 
                 <label for="topping">Top</label>
 
@@ -56,7 +56,7 @@
 
             </div>
 
-            <div class="felt">
+            <div class="field">
 
                 <label for="quantity">Antal</label>
 

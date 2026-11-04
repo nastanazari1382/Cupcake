@@ -13,7 +13,7 @@ input {
     margin-bottom: 1.25rem;
     padding: 0.9rem 1rem;
     background: #fff;
-    border: 2px solid var(--felt-kant);
+    border: 2px solid var(--field-border);
     border-radius: 10px;
     font: inherit;
 }
@@ -24,13 +24,13 @@ input:focus {
 }
 
 
-.skift-tekst {
+.switch-text {
     margin: 1.25rem 0 0;
     text-align: center;
-    color: var(--daempet);
+    color: var(--muted);
 }
 
-.skift-tekst a {
+.switch-text a {
     color: var(--pink);
     font-weight: 600;
     text-decoration: none;

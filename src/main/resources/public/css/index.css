@@ -1,5 +1,5 @@
 /* Front page only: the "Byg din cupcake" box */
-.bestil-boks {
+.order-box {
 
     max-width: 720px;
 
@@ -7,32 +7,32 @@
 
     padding: 2.5rem;
 
-    background: var(--brun);
+    background: var(--brown);
 
     border-radius: 12px;
 
     color: #fff;
 }
-.bestil-boks select,
-.bestil-boks input {
+.order-box select,
+.order-box input {
     width: 100%;
     height: 3rem;
     padding: 0 0.8rem;
-    border: 2px solid var(--felt-kant);
+    border: 2px solid var(--field-border);
     border-radius: 8px;
     background: #fff;
     font: inherit;
     font-size: 0.9rem;
     font-weight: 600;
 }
-.bestil-boks h1 {
+.order-box h1 {
 
     margin: 0 0 1.5rem;
 
     color: #fff;
 }
 /* Fields and button on one row */
-.bestil-boks form {
+.order-box form {
 
     display: flex;
 
@@ -40,11 +40,11 @@
 
     align-items: flex-end;   /* button lines up with the bottom of the fields */
 }
-.bestil-boks .felt {
+.order-box .field {
 
     flex: 1;                 /* fields share the space equally */
 }
-.bestil-boks label {
+.order-box label {
 
     display: block;
 
@@ -55,7 +55,7 @@
     font-weight: 600;
 }
 
-.bestil-boks button {
+.order-box button {
 
     width: auto;             /* base.css makes buttons 100% wide – not here */
     height: 3rem;
@@ -66,7 +66,7 @@
 /* Mobile: fields stacked */
 @media (max-width: 600px) {
 
-    .bestil-boks form {
+    .order-box form {
 
         flex-direction: column;
 
@@ -74,7 +74,7 @@
 
     }
 
-    .bestil-boks button {
+    .order-box button {
 
         width: 100%;
 

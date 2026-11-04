@@ -12,7 +12,7 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
 <main>
-    <div class="kort">
+    <div class="card">
         <h1>Log ind</h1>
 
         <p class="error" th:if="${error}" th:text="${error}"></p>
@@ -27,7 +27,7 @@
             <button type="submit">Log ind</button>
         </form>
 
-        <p class="skift-tekst">Ny kunde? <a href="/opret-konto">Opret en konto</a></p>
+        <p class="switch-text">Ny kunde? <a href="/opret-konto">Opret en konto</a></p>
     </div>
 </main>
 
