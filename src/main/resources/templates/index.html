@@ -1,19 +1,75 @@
 <!DOCTYPE html>
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Forside</title>
+
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 <header th:replace="~{fragments/navbar :: navbar}"></header>
-
 <main>
 
-</main>
+    <section id="bestil" class="bestil-boks">
 
+        <h1>Byg din cupcake</h1>
+
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+
+        <form th:action="@{/kurv/tilfoej}" method="post">
+
+            <div class="felt">
+
+                <label for="bottom">Bund</label>
+
+                <select id="bottom" name="bottom">
+
+                    <option th:each="bottom : ${bottoms}"
+
+                            th:value="${bottom.id}"
+
+                            th:text="${bottom.name + ' (' + #numbers.formatDecimal(bottom.price, 1, 0) + ' kr)'}">Bund</option>
+
+                </select>
+
+            </div>
+
+            <div class="felt">
+
+                <label for="topping">Top</label>
+
+                <select id="topping" name="topping">
+
+                    <option th:each="topping : ${toppings}"
+
+                            th:value="${topping.id}"
+
+                            th:text="${topping.name + ' (' + #numbers.formatDecimal(topping.price, 1, 0) + ' kr)'}">Top</option>
+
+                </select>
+
+            </div>
+
+            <div class="felt">
+
+                <label for="quantity">Antal</label>
+
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+            </div>
+
+            <button type="submit">Læg i kurv</button>
+
+        </form>
+
+    </section>
+</main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

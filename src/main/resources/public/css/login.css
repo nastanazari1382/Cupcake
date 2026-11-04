@@ -23,14 +23,6 @@ input:focus {
     border-color: var(--pink);
 }
 
-.error {
-    margin: 0 0 1.25rem;
-    padding: 0.75rem 1rem;
-    background: #FCE8EC;
-    color: #A3304F;
-    border-radius: 10px;
-    text-align: center;
-}
 
 .skift-tekst {
     margin: 1.25rem 0 0;

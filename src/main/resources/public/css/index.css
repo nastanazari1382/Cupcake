@@ -1,0 +1,82 @@
+/* Kun til forsiden: "Byg din cupcake"-boksen */
+.bestil-boks {
+
+    max-width: 720px;
+
+    margin: 2rem auto;
+
+    padding: 2.5rem;
+
+    background: var(--brun);
+
+    border-radius: 12px;
+
+    color: #fff;
+}
+.bestil-boks select,
+.bestil-boks input {
+    width: 100%;
+    height: 3rem;
+    padding: 0 0.8rem;
+    border: 2px solid var(--felt-kant);
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.bestil-boks h1 {
+
+    margin: 0 0 1.5rem;
+
+    color: #fff;
+}
+/* Felterne og knappen på én række */
+.bestil-boks form {
+
+    display: flex;
+
+    gap: 1rem;
+
+    align-items: flex-end;   /* knappen flugter med bunden af felterne */
+}
+.bestil-boks .felt {
+
+    flex: 1;                 /* felterne deler pladsen ligeligt */
+}
+.bestil-boks label {
+
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+.bestil-boks button {
+
+    width: auto;             /* base.css gør knapper 100% brede – ikke her */
+    height: 3rem;
+    padding: 0 1.75rem;
+
+    background: var(--pink);
+}
+/* Mobil: felterne under hinanden */
+@media (max-width: 600px) {
+
+    .bestil-boks form {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .bestil-boks button {
+
+        width: 100%;
+
+    }
+}
