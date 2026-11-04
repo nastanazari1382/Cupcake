@@ -1,21 +1,4 @@
-/* Kun til login-siden: kortet og formularen */
-
-/* ---------- Kort ---------- */
-.kort {
-    width: 100%;
-    max-width: 440px;
-    margin: 2rem auto 0;
-    padding: 2rem;
-    background: #fff;
-    border: 1px solid var(--kant);
-    border-radius: 16px;
-}
-
-.kort h1 {
-    margin: 0 0 1.5rem;
-    text-align: center;
-    font-size: 2.375rem;
-}
+/* Kun til login-siden: formularen */
 
 /* ---------- Formular ---------- */
 label {
@@ -40,22 +23,6 @@ input:focus {
     border-color: var(--pink);
 }
 
-button {
-    width: 100%;
-    padding: 0.95rem;
-    background: var(--brun);
-    color: #fff;
-    border: 0;
-    border-radius: 10px;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
 .error {
     margin: 0 0 1.25rem;
     padding: 0.75rem 1rem;
@@ -75,11 +42,4 @@ button:hover {
     color: var(--pink);
     font-weight: 600;
     text-decoration: none;
-}
-
-/* ---------- Mobil ---------- */
-@media (max-width: 600px) {
-    .kort {
-        padding: 1.5rem;
-    }
 }
