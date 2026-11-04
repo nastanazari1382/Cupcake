@@ -1,6 +1,7 @@
 package controllers;
 
 
+import entities.User;
 import exceptions.DatabaseException;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
@@ -38,8 +39,9 @@ public class UserController {
         }
 
         try {
-            UserMapper.createUser(email, password1, connectionPool);
-            ctx.redirect("/login");
+            User user = UserMapper.createUser(email, password1, connectionPool);
+            ctx.sessionAttribute("currentUser", user);
+            ctx.redirect("/kurv");
         } catch (DatabaseException e) {
             visFejl(ctx, e.getMessage(), email);
         }
@@ -48,4 +50,5 @@ public class UserController {
     private void visFejl(Context ctx, String besked, String email) {
         ctx.render("opretKonto.html", Map.of("error", besked, "email", email));
     }
+
 }

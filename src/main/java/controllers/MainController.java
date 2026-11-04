@@ -12,12 +12,4 @@ public class MainController {
         ctx.render("index.html");
     }
 
-
-    private void login(Context ctx) {
-        ctx.render("login.html");
-}
-
-    private void opretKonto(Context ctx) {
-        ctx.render("opretKonto.html");
-    }
 }
