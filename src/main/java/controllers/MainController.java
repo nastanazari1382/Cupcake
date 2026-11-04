@@ -19,10 +19,12 @@ public class MainController {
         this.connectionPool = connectionPool;
     }
 
+    // Registers the route for the front page
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/", ctx -> index(ctx));
     }
 
+    // Shows the front page with bottoms and toppings in the dropdowns
     private void index(Context ctx) {
         try {
             List<Bottom> bottoms = BottomMapper.getAllBottoms(connectionPool);

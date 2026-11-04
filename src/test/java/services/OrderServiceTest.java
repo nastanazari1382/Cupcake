@@ -15,8 +15,9 @@ class OrderServiceTest {
     private OrderService orderService;
 
     @BeforeEach
+    // Runs before each test and creates a fresh OrderService
     void setUp() {
-        // calculateTotal bruger ikke databasen, så vi behøver ingen rigtig ConnectionPool
+        // calculateTotal does not use the database, so no real ConnectionPool is needed
         orderService = new OrderService(null);
     }
 

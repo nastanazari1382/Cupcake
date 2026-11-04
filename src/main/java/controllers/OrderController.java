@@ -15,11 +15,13 @@ public class OrderController {
         this.orderService = new OrderService(connectionPool);
     }
 
+    // Registers the routes for the cart
     public void setRoutes(JavalinConfig config) {
-        config.routes.get("/kurv",ctx -> kurv(ctx));
+        config.routes.get("/kurv", ctx -> showCart(ctx));
     }
 
-    private void kurv(Context ctx) {
+    // Shows the cart with all orderlines and the total price
+    private void showCart(Context ctx) {
         List<Orderline> cart = ctx.sessionAttribute("cart");
         double total = orderService.calculateTotal(cart);
 

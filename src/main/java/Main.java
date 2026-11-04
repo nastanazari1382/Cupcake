@@ -13,11 +13,12 @@ public class Main {
     private static final String DB = "cupcake";
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
+    // Starts Javalin on port 7070 and registers all controllers
     public static void main(String[] args){
         Javalin.create(config -> {
             config.staticFiles.add("/public");
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
-            new MainController(connectionPool).setRoutes(config); // Fælles controller
+            new MainController(connectionPool).setRoutes(config);
             new OrderController(connectionPool).setRoutes(config);
             new UserController(connectionPool).setRoutes(config);
 

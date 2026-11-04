@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ToppingMapper {
 
+    // Gets all toppings from the database
     public static List<Topping> getAllToppings(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM toppings";
         List<Topping> toppings = new ArrayList<>();

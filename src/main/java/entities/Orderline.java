@@ -23,11 +23,13 @@ public class Orderline {
         return quantity;
     }
 
+    // Price for one cupcake: bottom + topping
     public double getUnitPrice() {
         return bottom.getPrice() + topping.getPrice();
     }
 
 
+    // Price for the whole line: unit price * quantity
     public double getTotalPrice() {
         return getUnitPrice() * quantity;
     }

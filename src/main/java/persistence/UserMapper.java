@@ -10,31 +10,32 @@ import java.sql.SQLException;
 
 public class UserMapper {
 
-        public static User login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
-            String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    // Finds the user with the given email and password, or throws if login fails
+    public static User login(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
-            try (Connection connection = connectionPool.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setString(1, email);
-                ps.setString(2, password);
+            ps.setString(1, email);
+            ps.setString(2, password);
 
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    double balance = rs.getDouble("balance");
-                    String role = rs.getString("role");
-                    return new User(id,email,password,balance,role);
-                } else {
-                    throw new DatabaseException("Forkert email eller kode");
-                }
-            } catch (SQLException e) {
-                throw new DatabaseException("Fejl ved login: " + e.getMessage());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                double balance = rs.getDouble("balance");
+                String role = rs.getString("role");
+                return new User(id,email,password,balance,role);
+            } else {
+                throw new DatabaseException("Forkert email eller kode");
             }
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved login: " + e.getMessage());
         }
+    }
 
 
-    // NY til US-2: role = 'customer' og balance = 0 kommer fra DEFAULT i tabellen
+    // Creates a new customer. role = 'customer' and balance = 0 come from DEFAULT in the table
     public static User createUser(String email, String password, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO users (email, password) VALUES (?, ?) RETURNING id, balance, role";
 
@@ -55,7 +56,7 @@ public class UserMapper {
         }
     }
 
-    // Postgres' fejlkode for "unique constraint overtrådt" (her: emailen findes allerede)
+    // Postgres error code for "unique constraint violated" (here: the email already exists)
     private static final String UNIQUE_VIOLATION = "23505";
 
 }
