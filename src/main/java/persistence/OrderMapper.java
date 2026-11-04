@@ -1,5 +1,6 @@
 package persistence;
 
+import entities.Orderline;
 import exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -24,6 +25,24 @@ public class OrderMapper {
 
         } catch (SQLException e) {
             throw new DatabaseException("Fejl ved oprettelse af ordre: " + e.getMessage());
+        }
+    }
+
+    public static void createOrderline(int orderId, Orderline line, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO orderlines (order_id, bottom_id, topping_id, quantity, unit_price) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+            ps.setInt(2, line.getBottom().getId());
+            ps.setInt(3, line.getTopping().getId());
+            ps.setInt(4, line.getQuantity());
+            ps.setDouble(5, line.getUnitPrice());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved oprettelse af ordrelinje: " + e.getMessage());
         }
     }
 }
