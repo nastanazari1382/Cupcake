@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserMapper {
 
@@ -74,6 +76,26 @@ public class UserMapper {
             throw new DatabaseException("Fejl ved opdatering af saldo: " + e.getMessage());
         }
     }
+
+    // This method gets all users with the role 'customer'
+    public static List<User> getAllCustomers(ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT id, email, password, balance, role FROM users WHERE role = 'customer' ORDER BY email";
+        List<User> customers = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                customers.add(new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"),
+                        rs.getDouble("balance"), rs.getString("role")));
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved hentning af kunder: " + e.getMessage());
+        }
+        return customers;
+    }
+
 
     // Postgres error code for "unique constraint violated" (here: the email already exists)
     private static final String UNIQUE_VIOLATION = "23505";

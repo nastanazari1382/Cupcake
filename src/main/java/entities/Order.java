@@ -1,6 +1,9 @@
 package entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private int id;
@@ -8,6 +11,7 @@ public class Order {
     private LocalDateTime orderDate;
     private boolean paid;
     private boolean pickedUp;
+    private final List<Orderline> lines = new ArrayList<>();
 
     public Order(int id, int userId, LocalDateTime orderDate, boolean paid, boolean pickedUp) {
         this.id = id;
@@ -39,5 +43,20 @@ public class Order {
 
     public void setPickedUp(boolean pickedUp) {
         this.pickedUp = pickedUp;
+    }
+
+    public void addLine(Orderline line) {
+        lines.add(line);
+    }
+
+    public List<Orderline> getLines() {
+        return lines;
+    }
+
+    // We write the date as text here so Thymeleaf does not need to format a LocalDateTime
+    //looks way better and is easier to do
+
+    public String getOrderDateText() {
+        return orderDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
     }
 }
