@@ -1,10 +1,14 @@
 package services;
 
+import entities.Bottom;
 import entities.Orderline;
+import entities.Topping;
 import entities.User;
 import exceptions.DatabaseException;
+import persistence.BottomMapper;
 import persistence.ConnectionPool;
 import persistence.OrderMapper;
+import persistence.ToppingMapper;
 import persistence.UserMapper;
 
 import java.util.List;
@@ -51,7 +55,15 @@ public class OrderService {
         user.setBalance(newBalance);
     }
 
+    // Adds a new orderline to the cart. The same bottom and topping twice gives two separate lines.
+    public void addToCart(List<Orderline> cart, int bottomId, int toppingId, int quantity) throws DatabaseException {
+        if (quantity < 1) {
+            throw new DatabaseException("Antal skal være mindst 1");
+        }
 
+        Bottom bottom = BottomMapper.getBottomById(bottomId, connectionPool);
+        Topping topping = ToppingMapper.getToppingById(toppingId, connectionPool);
 
-
+        cart.add(new Orderline(bottom, topping, quantity));
+    }
 }
