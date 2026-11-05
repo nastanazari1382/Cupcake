@@ -16,6 +16,64 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 <main>
 
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p class="hero-label">Friskbagt hver morgen</p>
+
+            <h1>Håndlavede cupcakes, <span>præcis</span> som du vil have dem</h1>
+
+            <p class="hero-intro">Vælg mellem 5 bunde og 9 toppe. Bestil online, betal med din konto, og hent dem i
+                butikken.</p>
+            <div class="hero-buttons">
+                <a href="#order" class="button">Byg din cupcake</a>
+                <a href="#popular" class="button button-light">Se favoritter</a>
+
+            </div>
+
+            <div class="hero-facts">
+
+                <div><strong>45</strong><span>kombinationer</span></div>
+                <div><strong>Fra 27 kr</strong><span>pr. stk</span></div>
+                <div><strong>Klar</strong><span>samme dag</span></div>
+
+            </div>
+
+        </div>
+
+        <img src="/images/hero.jpg" alt="Farverige cupcakes" class="hero-image">
+
+    </section>
+    <section class="steps">
+
+        <div class="step">
+
+            <span class="step-number">1</span>
+            <h3>Vælg bund og top</h3>
+            <p>Kombinér frit mellem vores smage.</p>
+
+        </div>
+
+        <div class="step">
+
+            <span class="step-number">2</span>
+            <h3>Betal med din konto</h3>
+            <p>Beløbet trækkes fra din saldo.</p>
+
+        </div>
+
+        <div class="step">
+
+            <span class="step-number">3</span>
+            <h3>Hent i butikken</h3>
+            <p>Vi giver besked, når de er klar.</p>
+
+        </div>
+
+    </section>
+
+
     <section id="order" class="order-box">
 
         <h1>Byg din cupcake</h1>
@@ -34,7 +92,8 @@
 
                             th:value="${bottom.id}"
 
-                            th:text="${bottom.name + ' (' + #numbers.formatDecimal(bottom.price, 1, 0) + ' kr)'}">Bund</option>
+                            th:text="${bottom.name + ' (' + #numbers.formatDecimal(bottom.price, 1, 0) + ' kr)'}">Bund
+                    </option>
 
                 </select>
 
@@ -50,7 +109,8 @@
 
                             th:value="${topping.id}"
 
-                            th:text="${topping.name + ' (' + #numbers.formatDecimal(topping.price, 1, 0) + ' kr)'}">Top</option>
+                            th:text="${topping.name + ' (' + #numbers.formatDecimal(topping.price, 1, 0) + ' kr)'}">Top
+                    </option>
 
                 </select>
 
@@ -69,6 +129,51 @@
         </form>
 
     </section>
+    <section id="popular" class="favorites">
+
+        <h2>Kundernes favoritter</h2>
+
+        <div class="favorite-list">
+
+            <div class="favorite">
+
+                <img src="/images/favorite-mint.jpg" alt="Cupcake med mintcreme">
+                <div class="favorite-info">
+                    <h3>Mint</h3>
+                    <p>Chokoladebund · mintcreme</p>
+                    <span class="favorite-price">29 kr</span>
+
+                </div>
+
+            </div>
+
+            <div class="favorite">
+                <img src="/images/favorite-raspberry.jpg" alt="Cupcake med hindbærcreme">
+                <div class="favorite-info">
+                    <h3>Hindbær</h3>
+                    <p>Chokoladebund · hindbærcreme</p>
+                    <span class="favorite-price">29 kr</span>
+
+                </div>
+
+            </div>
+
+            <div class="favorite">
+
+                <img src="/images/favorite-lemon.jpg" alt="Cupcake med citroncreme">
+                <div class="favorite-info">
+                    <h3>Citron</h3>
+                    <p>Chokoladebund · citroncreme</p>
+                    <span class="favorite-price">29 kr</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
