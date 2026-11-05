@@ -62,14 +62,34 @@
 
 /* ---------- Footer ---------- */
 footer {
-    padding: 1.5rem;
+    padding: 2.5rem 3rem;
     background: var(--footer);
     color: #F5ECE4;
-    text-align: center;
+}
+
+/* Logo on the left, opening hours and contact on the right */
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 footer p {
-    margin: 0;
+    margin: 0 0 0.25rem;
+    font-size: 0.85rem;
+}
+
+footer h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+}
+
+/* The logo is light in the footer, not brown */
+footer .logo {
+    margin-bottom: 0.5rem;
+    color: #fff;
 }
 
 /* ---------- Mobile ---------- */
@@ -83,5 +103,10 @@ footer p {
     .nav-links {
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; /* columns under each other on mobile */
+
     }
 }
