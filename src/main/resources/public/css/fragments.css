@@ -60,6 +60,12 @@
     font-size: 0.75rem;
 }
 
+/* The customer's balance next to the email */
+.nav-balance {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
 /* ---------- Footer ---------- */
 footer {
     padding: 2.5rem 3rem;
