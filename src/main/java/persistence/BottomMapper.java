@@ -33,4 +33,27 @@ public class BottomMapper {
         }
         return bottoms;
     }
+
+
+    public static Bottom getBottomById(int id, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM bottoms WHERE id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                return new Bottom(id, name, price);
+            } else {
+                throw new DatabaseException("Bunden findes ikke");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved indhentning af bund: " + e.getMessage());
+        }
+    }
 }
