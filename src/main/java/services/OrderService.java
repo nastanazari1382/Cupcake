@@ -34,8 +34,8 @@ public class OrderService {
         return total;
     }
 
-    // Places the order: saves the order and its orderlines and withdraws the amount from the user's balance
-    public void placeOrder(User user, List<Orderline> cart) throws DatabaseException {
+    // Places the order: saves the order and its orderlines and withdraws the amount from the user's balance. Returns the order id.
+    public int placeOrder(User user, List<Orderline> cart) throws DatabaseException {
         if (cart == null || cart.isEmpty()) {
             throw new DatabaseException("Kurven er tom");
         }
@@ -53,6 +53,7 @@ public class OrderService {
         double newBalance = user.getBalance() - total;
         UserMapper.updateBalance(user.getId(), newBalance, connectionPool);
         user.setBalance(newBalance);
+        return orderId;
     }
 
     // Adds a new orderline to the cart. The same bottom and topping twice gives two separate lines.

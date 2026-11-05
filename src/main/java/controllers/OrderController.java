@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.Orderline;
+import entities.User;
 import exceptions.DatabaseException;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
@@ -21,6 +22,7 @@ public class OrderController {
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/kurv", ctx -> showCart(ctx));
         config.routes.post("/kurv/tilfoej", ctx -> addToCart(ctx));
+        config.routes.post("/kurv/betal", ctx -> pay(ctx));
     }
 
     // Shows the cart with all orderlines and the total price
@@ -51,5 +53,31 @@ public class OrderController {
             ctx.sessionAttribute("error", e.getMessage());
         }
         ctx.redirect("/");
+    }
+
+    // Pays for the cart. Not logged in goes to login. On error the cart is shown again with the message.
+    private void pay(Context ctx) {
+        User user = ctx.sessionAttribute("currentUser");
+        if (user == null) {
+            ctx.redirect("/login");
+            return;
+        }
+
+        List<Orderline> cart = ctx.sessionAttribute("cart");
+        try {
+            double total = orderService.calculateTotal(cart);
+            int orderId = orderService.placeOrder(user, cart);
+
+            ctx.sessionAttribute("cart", new ArrayList<Orderline>());
+            ctx.attribute("orderId", orderId);
+            ctx.attribute("orderlines", cart);
+            ctx.attribute("total", total);
+            ctx.render("confirmation.html");
+        } catch (DatabaseException e) {
+            ctx.attribute("error", e.getMessage());
+            ctx.attribute("cart", cart);
+            ctx.attribute("total", orderService.calculateTotal(cart));
+            ctx.render("cart.html");
+        }
     }
 }
