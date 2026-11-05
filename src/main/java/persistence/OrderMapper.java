@@ -11,6 +11,11 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import entities.Bottom;
+import entities.Order;
+import entities.Orderline;
+import entities.Topping;
+
 
 public class OrderMapper {
     // Creates a new order for the user and returns its id
@@ -82,5 +87,52 @@ public class OrderMapper {
             throw new DatabaseException("Fejl ved indhentning af ordrer: " + e.getMessage());
         }
         return orderSummaryList;
+    }
+
+
+    // NY til US-6: gets all orders (with their orderlines) for one customer, newest first
+    public static List<Order> getOrdersByUserId(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT o.id, o.user_id, o.order_date, o.paid, o.picked_up, "
+                + "       b.id AS bottom_id, b.name AS bottom_name, b.price AS bottom_price, "
+                + "       t.id AS topping_id, t.name AS topping_name, t.price AS topping_price, "
+                + "       ol.quantity "
+                + "FROM orders o "
+                + "LEFT JOIN orderlines ol ON ol.order_id = o.id "
+                + "LEFT JOIN bottoms b ON b.id = ol.bottom_id "
+                + "LEFT JOIN toppings t ON t.id = ol.topping_id "
+                + "WHERE o.user_id = ? "
+                + "ORDER BY o.id DESC, ol.id";
+
+        List<Order> orders = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            Order current = null;
+
+            while (rs.next()) {
+                int orderId = rs.getInt("id");
+
+                // a new order starts when the id changes
+                if (current == null || current.getId() != orderId) {
+                    current = new Order(orderId, rs.getInt("user_id"),
+                            rs.getTimestamp("order_date").toLocalDateTime(),
+                            rs.getBoolean("paid"), rs.getBoolean("picked_up"));
+                    orders.add(current);
+                }
+
+                // add this row as an orderline on the current order (NULL = order without lines)
+                if (rs.getObject("bottom_id") != null) {
+                    Bottom bottom = new Bottom(rs.getInt("bottom_id"), rs.getString("bottom_name"), rs.getDouble("bottom_price"));
+                    Topping topping = new Topping(rs.getInt("topping_id"), rs.getString("topping_name"), rs.getDouble("topping_price"));
+                    current.addLine(new Orderline(bottom, topping, rs.getInt("quantity")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved hentning af ordrer: " + e.getMessage());
+        }
+        return orders;
     }
 }

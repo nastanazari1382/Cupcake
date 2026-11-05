@@ -53,6 +53,15 @@ public class Order {
         return lines;
     }
 
+    // Total price of all lines on the order
+    public double getTotal() {
+        double sum = 0;
+        for (Orderline line : lines) {
+            sum += line.getTotalPrice();
+        }
+        return sum;
+    }
+
     // We write the date as text here so Thymeleaf does not need to format a LocalDateTime
     //looks way better and is easier to do
 
