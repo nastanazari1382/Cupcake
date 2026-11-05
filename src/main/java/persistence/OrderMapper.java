@@ -22,8 +22,8 @@ public class OrderMapper {
     public static int createOrder(int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO orders (user_id) VALUES (?) RETURNING id";
 
-        try(Connection connection = connectionPool.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -87,6 +87,23 @@ public class OrderMapper {
             throw new DatabaseException("Fejl ved indhentning af ordrer: " + e.getMessage());
         }
         return orderSummaryList;
+    }
+
+    // Deletes an order.
+    public static void deleteOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "DELETE FROM orders WHERE id = ? ";
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Ordren kunne ikke slettes");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved sletning af ordre: " + e.getMessage());
+        }
     }
 
 
