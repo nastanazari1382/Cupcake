@@ -24,7 +24,6 @@ public class AdminController {
 
     // Registers the routes for the admin pages
     public void setRoutes(JavalinConfig config) {
-        config.routes.get("/admin/ordrer", ctx -> showOrders(ctx));
         config.routes.post("/admin/ordrer/slet", ctx -> deleteOrder(ctx));
             config.routes.get("/admin/ordrer", ctx -> showOrders(ctx));
             config.routes.get("/admin/kunder", ctx -> showCustomers(ctx));
