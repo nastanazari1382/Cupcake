@@ -4,7 +4,6 @@ Webshop til bageriet Copenhagen Cupcakes, lavet som 2. semesterprojekt på datam
 Kunder kan sammensætte cupcakes af en bund og en top, lægge dem i kurven og betale med saldoen på deres konto.
 Admin kan se alle ordrer og kunder, indsætte beløb på en kundes saldo og slette eller markere ordrer som afhentet.
 
-
 ## Gruppe
 - Besima
 - Nasta
