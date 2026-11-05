@@ -3,7 +3,6 @@
 
     <div class="nav-links">
         <a href="/#order">Bestil</a>
-        <a href="/#order">Bestil</a>
         <a href="/#popular">Populære</a>
         <a href="/#about">Om os</a>
 
@@ -13,6 +12,7 @@
 
         <th:block th:if="${session.currentUser != null}">
             <span class="nav-email" th:text="${session.currentUser.email}"></span>
+            <span class="nav-balance" th:if="${session.currentUser.role == 'customer'}" th:text="${'Saldo: ' + #numbers.formatDecimal(session.currentUser.balance, 1, 2, 'COMMA') + ' kr'}"></span>
             <a href="/logout">Log ud</a>
         </th:block>
 
