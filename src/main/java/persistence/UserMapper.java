@@ -78,7 +78,7 @@ public class UserMapper {
     }
 
 
-    // it gets all users with the role 'customer'
+    // Gets all users with the role 'customer'
     public static List<User> getAllCustomers(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT id, email, password, balance, role FROM users WHERE role = 'customer' ORDER BY email";
         List<User> customers = new ArrayList<>();

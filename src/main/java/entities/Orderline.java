@@ -6,6 +6,12 @@ public class Orderline {
     private int quantity;
     private double unitPrice;
 
+    // New orderline in the cart: the unit price is the current price of bottom + topping
+    public Orderline(Bottom bottom, Topping topping, int quantity) {
+        this(bottom, topping, quantity, bottom.getPrice() + topping.getPrice());
+    }
+
+    // Orderline from the database: uses the unit price saved when the order was placed
     public Orderline(Bottom bottom, Topping topping, int quantity, double unitPrice) {
         this.bottom = bottom;
         this.topping = topping;
@@ -25,11 +31,10 @@ public class Orderline {
         return quantity;
     }
 
-    // Price for one cupcake: bottom + topping
+    // Price for one cupcake
     public double getUnitPrice() {
-        return bottom.getPrice() + topping.getPrice();
+        return unitPrice;
     }
-
 
     // Price for the whole line: unit price * quantity
     public double getTotalPrice() {

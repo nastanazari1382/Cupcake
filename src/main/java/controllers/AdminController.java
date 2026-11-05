@@ -25,8 +25,8 @@ public class AdminController {
     // Registers the routes for the admin pages
     public void setRoutes(JavalinConfig config) {
         config.routes.post("/admin/ordrer/slet", ctx -> deleteOrder(ctx));
-            config.routes.get("/admin/ordrer", ctx -> showOrders(ctx));
-            config.routes.get("/admin/kunder", ctx -> showCustomers(ctx));
+        config.routes.get("/admin/ordrer", ctx -> showOrders(ctx));
+        config.routes.get("/admin/kunder", ctx -> showCustomers(ctx));
     }
 
 
@@ -63,7 +63,7 @@ public class AdminController {
         }
     }
 
-    // shows all customers and their orders to the admin
+    // Shows all customers and their orders to the admin
     private void showCustomers(Context ctx) {
         if (!isAdmin(ctx)) {
             ctx.redirect("/");
