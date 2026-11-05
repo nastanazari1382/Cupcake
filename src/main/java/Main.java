@@ -1,4 +1,5 @@
 import configuration.ThymeleafConfig;
+import controllers.AdminController;
 import controllers.MainController;
 import controllers.OrderController;
 import io.javalin.Javalin;
@@ -21,6 +22,7 @@ public class Main {
             new MainController(connectionPool).setRoutes(config);
             new OrderController(connectionPool).setRoutes(config);
             new UserController(connectionPool).setRoutes(config);
+            new AdminController(connectionPool).setRoutes(config);
 
         }).start(7070);
     }
