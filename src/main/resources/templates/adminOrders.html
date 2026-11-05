@@ -6,20 +6,21 @@
     <title>Ordrer</title>
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/fragments.css}">
-    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main>
-    <nav th:replace="~{fragments/adminMenu :: adminMenu}"></nav>
+<main class="admin-page">
+    <nav th:replace="~{fragments/adminMenu :: adminMenu('orders')}"></nav>
 
-    <div class="card cart">
+    <div class="customer-card orders-card">
         <h1>Alle ordrer</h1>
         <p th:if="${#lists.isEmpty(orders)}">Der er ingen ordrer endnu</p>
         <p class="error" th:if="${error}" th:text="${error}"></p>
 
-        <table th:unless="${#lists.isEmpty(orders)}">
+        <table class="admin-table orders-table"
+               th:unless="${#lists.isEmpty(orders)}">
             <thead>
             <tr>
                 <th>Ordre nr.</th>

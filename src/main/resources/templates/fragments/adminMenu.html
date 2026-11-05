@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav th:fragment="adminMenu" class="admin-menu">
-    <a href="/admin/ordrer">Ordrer</a>
-    <a href="/admin/kunder">Kunder</a>
+<nav th:fragment="adminMenu(active)" class="admin-menu">
+    <a href="/admin/ordrer" th:classappend="${active == 'orders'} ? 'active'">Ordrer</a>
+    <a href="/admin/kunder" th:classappend="${active == 'customers'} ? 'active'">Kunder</a>
 </nav>
 </body>
 </html>
