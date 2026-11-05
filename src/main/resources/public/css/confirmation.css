@@ -1,0 +1,68 @@
+/* Confirmation page only */
+
+.confirmation {
+    max-width: 560px;
+    text-align: center;
+}
+
+/* ---------- Check icon ---------- */
+.check {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pink);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.order-number {
+    margin: -0.75rem 0 1.5rem;
+    color: var(--muted);
+}
+
+/* ---------- Table ---------- */
+.confirmation table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+}
+
+.confirmation th,
+.confirmation td {
+    padding: 0.9rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.confirmation th {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* ---------- Paid and new balance ---------- */
+.summary {
+    margin-bottom: 1.5rem;
+}
+
+.summary p {
+    margin: 0.4rem 0;
+    display: flex;
+    justify-content: space-between;
+    color: var(--brown);
+}
+
+/* ---------- Link back ---------- */
+.back-link {
+    color: var(--pink);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
