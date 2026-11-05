@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ordrer</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+<body>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main>
+    <div class="card cart">
+        <h1>Alle ordrer</h1>
+        <p th:if="${#lists.isEmpty(orders)}">Der er ingen ordrer endnu</p>
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+
+        <table th:unless="${#lists.isEmpty(orders)}">
+            <thead>
+            <tr>
+                <th>Ordre nr.</th>
+                <th>Kunde</th>
+                <th>Dato</th>
+                <th>Pris</th>
+                <th>Betalt</th>
+                <th>Afhentet</th>
+                <th>Slet</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.email}"></td>
+                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${#numbers.formatDecimal(order.totalPrice, 1, 2, 'COMMA') + ' kr'}"></td>
+                <td th:text="${order.paid} ? 'Ja' : 'Nej'"></td>
+                <td th:text="${order.pickedUp} ? 'Ja' : 'Nej'"></td>
+                <td>
+
+                    <form method="post" action="/admin/ordrer/slet">
+                        <input type="hidden" name="orderId" th:value="${order.id}">
+                        <button type="submit">Slet</button>
+
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
