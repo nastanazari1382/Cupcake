@@ -1,3 +1,149 @@
+/* Hero: text on the left, round image on the right */
+.hero {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two equal columns */
+    gap: 3rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.hero-label {
+
+    margin: 0 0 0.5rem;
+    color: var(--pink);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero h1 {
+
+    margin: 0 0 1rem;
+    font-size: 3.5rem;
+    line-height: 1.1;
+}
+
+/* The pink word in the heading */
+.hero h1 span {
+
+    color: var(--pink);
+}
+
+.hero-intro {
+
+    margin: 0 0 1.5rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.hero-buttons {
+
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Links that look like buttons */
+.button {
+
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--brown);
+    color: #fff;
+    border: 2px solid var(--brown);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.button-light {
+
+    background: #fff;
+    color: var(--brown);
+    border-color: var(--border);
+}
+
+/* The three numbers under the buttons */
+.hero-facts {
+
+    display: flex;
+    gap: 2rem;
+}
+
+.hero-facts strong {
+
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--brown);
+}
+
+.hero-facts span {
+
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+/* Oval image */
+.hero-image {
+
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover; /* crops the image instead of stretching it */
+    border-radius: 50%;
+}
+
+/* Three cards explaining how to order */
+.steps {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* three equal columns */
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+}
+
+.step {
+
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* Pink circle with the number */
+.step-number {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: 1rem;
+    background: var(--pink);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.step h3 {
+
+    margin: 0 0 0.4rem;
+    font-family: var(--font-heading);
+    color: var(--brown);
+}
+
+.step p {
+
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
 /* Front page only: the "Byg din cupcake" box */
 .order-box {
 
@@ -13,6 +159,7 @@
 
     color: #fff;
 }
+
 .order-box select,
 .order-box input {
     width: 100%;
@@ -25,12 +172,14 @@
     font-size: 0.9rem;
     font-weight: 600;
 }
+
 .order-box h1 {
 
     margin: 0 0 1.5rem;
 
     color: #fff;
 }
+
 /* Fields and button on one row */
 .order-box form {
 
@@ -38,12 +187,14 @@
 
     gap: 1rem;
 
-    align-items: flex-end;   /* button lines up with the bottom of the fields */
+    align-items: flex-end; /* button lines up with the bottom of the fields */
 }
+
 .order-box .field {
 
-    flex: 1;                 /* fields share the space equally */
+    flex: 1; /* fields share the space equally */
 }
+
 .order-box label {
 
     display: block;
@@ -57,19 +208,83 @@
 
 .order-box button {
 
-    width: auto;             /* base.css makes buttons 100% wide – not here */
+    width: auto; /* base.css makes buttons 100% wide – not here */
     height: 3rem;
     padding: 0 1.75rem;
 
     background: var(--pink);
 }
+
+/* Customer favorites: three cards with image, name and price */
+.favorites {
+
+    max-width: 1100px;
+    margin: 4rem auto 0;
+}
+
+.favorites h2 {
+
+    margin: 0 0 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--brown);
+}
+
+.favorite-list {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.favorite {
+
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden; /* keeps the image inside the rounded corners */
+}
+
+.favorite img {
+
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* square image */
+    object-fit: cover;
+}
+
+.favorite-info {
+
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+.favorite-info h3 {
+
+    margin: 0 0 0.25rem;
+    font-family: var(--font-heading);
+    color: var(--brown);
+}
+
+.favorite-info p {
+
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.favorite-price {
+
+    color: var(--pink);
+    font-weight: 700;
+}
+
+
 /* Mobile: fields stacked */
 @media (max-width: 600px) {
 
     .order-box form {
 
         flex-direction: column;
-
         align-items: stretch;
 
     }
@@ -77,6 +292,30 @@
     .order-box button {
 
         width: 100%;
+
+    }
+
+    .hero {
+
+        grid-template-columns: 1fr; /* image under the text on mobile */
+
+    }
+
+    .hero h1 {
+
+        font-size: 2.5rem;
+
+    }
+
+    .steps {
+
+        grid-template-columns: 1fr; /* cards under each other on mobile */
+
+    }
+
+    .favorite-list {
+
+        grid-template-columns: 1fr;
 
     }
 }
