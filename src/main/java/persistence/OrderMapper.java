@@ -107,12 +107,12 @@ public class OrderMapper {
     }
 
 
-    // NY til US-6: gets all orders (with their orderlines) for one customer, newest first
+    //gets all orders (with their orderlines) for one customer, newest first
     public static List<Order> getOrdersByUserId(int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT o.id, o.user_id, o.order_date, o.paid, o.picked_up, "
-                + "       b.id AS bottom_id, b.name AS bottom_name, b.price AS bottom_price, "
-                + "       t.id AS topping_id, t.name AS topping_name, t.price AS topping_price, "
-                + "       ol.quantity "
+                + "       b.id AS bottom_id, b.name AS bottom_name, "
+                + "       t.id AS topping_id, t.name AS topping_name, "
+                + "       ol.quantity, ol.unit_price "
                 + "FROM orders o "
                 + "LEFT JOIN orderlines ol ON ol.order_id = o.id "
                 + "LEFT JOIN bottoms b ON b.id = ol.bottom_id "
@@ -142,13 +142,14 @@ public class OrderMapper {
 
                 // add this row as an orderline on the current order (NULL = order without lines)
                 if (rs.getObject("bottom_id") != null) {
-                    Bottom bottom = new Bottom(rs.getInt("bottom_id"), rs.getString("bottom_name"), rs.getDouble("bottom_price"));
-                    Topping topping = new Topping(rs.getInt("topping_id"), rs.getString("topping_name"), rs.getDouble("topping_price"));
-                    current.addLine(new Orderline(bottom, topping, rs.getInt("quantity")));
+                    Bottom bottom = new Bottom(rs.getInt("bottom_id"), rs.getString("bottom_name"), 0);
+                    Topping topping = new Topping(rs.getInt("topping_id"), rs.getString("topping_name"), 0);
+
+                    current.addLine(new Orderline(bottom, topping, rs.getInt("quantity"), rs.getDouble("unit_price")));
                 }
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Fejl ved hentning af ordrer: " + e.getMessage());
+            throw new DatabaseException("Fejl ved indhentning af ordrer: " + e.getMessage());
         }
         return orders;
     }

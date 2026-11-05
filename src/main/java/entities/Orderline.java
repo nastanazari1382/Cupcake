@@ -4,11 +4,13 @@ public class Orderline {
     private Bottom bottom;
     private Topping topping;
     private int quantity;
+    private double unitPrice;
 
-    public Orderline(Bottom bottom, Topping topping, int quantity) {
+    public Orderline(Bottom bottom, Topping topping, int quantity, double unitPrice) {
         this.bottom = bottom;
         this.topping = topping;
         this.quantity = quantity;
+        this.unitPrice = unitPrice;
     }
 
     public Bottom getBottom() {
