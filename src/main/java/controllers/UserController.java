@@ -57,7 +57,11 @@ public class UserController {
         try {
             User user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser", user);
-            ctx.redirect("/kurv");
+            if (user.getRole().equals("admin")) {
+                ctx.redirect("/admin/ordrer");
+            } else {
+                ctx.redirect("/kurv");
+            }
         } catch (DatabaseException e) {
             ctx.attribute("error", e.getMessage());
             ctx.render("login.html");

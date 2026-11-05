@@ -33,5 +33,27 @@ public class ToppingMapper {
         }
         return toppings;
     }
+
+    public static Topping getToppingById(int id, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM toppings WHERE id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                return new Topping(id, name, price);
+            } else {
+                throw new DatabaseException("Toppen findes ikke");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Fejl ved indhentning af top: " + e.getMessage());
+        }
+    }
 }
 

@@ -26,6 +26,13 @@ public class MainController {
 
     // Shows the front page with bottoms and toppings in the dropdowns
     private void index(Context ctx) {
+        // An error from another route (e.g. adding to the cart) is shown once and then removed
+        String error = ctx.sessionAttribute("error");
+        if (error != null) {
+            ctx.attribute("error", error);
+            ctx.sessionAttribute("error", null);
+        }
+
         try {
             List<Bottom> bottoms = BottomMapper.getAllBottoms(connectionPool);
             List<Topping> toppings = ToppingMapper.getAllToppings(connectionPool);

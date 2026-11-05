@@ -13,6 +13,10 @@
             <a href="/logout">Log ud</a>
         </th:block>
 
+        <th:block th:if="${session.currentUser != null and session.currentUser.role == 'admin'}">
+            <a href="/admin/ordrer">Ordrer</a>
+        </th:block>
+
         <a href="/kurv" class="cart-button">Kurv <span class="cart-count" th:text="${session.cart == null ? 0 : session.cart.size()}">0</span></a>
     </div>
 </nav>
