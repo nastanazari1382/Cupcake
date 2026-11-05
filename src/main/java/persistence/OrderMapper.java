@@ -83,22 +83,4 @@ public class OrderMapper {
         }
         return orderSummaryList;
     }
-
-    // Deletes the order. Its orderlines are deleted too (ON DELETE CASCADE)
-    public static void deleteOrder(int orderId, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "DELETE FROM orders WHERE id = ?";
-
-        try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            ps.setInt(1, orderId);
-
-            int rows = ps.executeUpdate();
-            if (rows != 1) {
-                throw new DatabaseException("Ordren kunne ikke slettes");
-            }
-        } catch (SQLException e) {
-            throw new DatabaseException("Fejl ved sletning af ordre: " + e.getMessage());
-        }
-    }
 }

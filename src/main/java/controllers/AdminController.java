@@ -21,7 +21,6 @@ public class AdminController {
     // Registers the routes for the admin pages
     public void setRoutes(JavalinConfig config) {
         config.routes.get("/admin/ordrer", ctx -> showOrders(ctx));
-        config.routes.post("/admin/ordrer/slet", ctx -> deleteOrder(ctx));
     }
 
     // Shows all orders to the admin.
@@ -44,21 +43,5 @@ public class AdminController {
     private boolean isAdmin(Context ctx) {
         User user = ctx.sessionAttribute("currentUser");
         return user != null && user.getRole().equals("admin");
-    }
-
-    // Deletes an order (only for admin) and shows the order list again
-    private void deleteOrder(Context ctx) {
-        if (!isAdmin(ctx)) {
-            ctx.redirect("/");
-            return;
-        }
-        try {
-            int orderId = Integer.parseInt(ctx.formParam("orderId"));
-            OrderMapper.deleteOrder(orderId, connectionPool);
-            ctx.redirect("/admin/ordrer");
-        } catch (DatabaseException e) {
-            ctx.attribute("error", e.getMessage());
-            ctx.render("adminOrders.html");
-        }
     }
 }
