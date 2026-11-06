@@ -18,9 +18,9 @@ import entities.Topping;
 
 
 public class OrderMapper {
-    // Creates a new order for the user and returns its id
+    // Creates a new paid order for the user and returns its id (the amount is withdrawn in OrderService)
     public static int createOrder(int userId, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "INSERT INTO orders (user_id) VALUES (?) RETURNING id";
+        String sql = "INSERT INTO orders (user_id, paid) VALUES (?, true) RETURNING id";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
