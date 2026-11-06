@@ -87,4 +87,15 @@ button:hover {
     .card {
         padding: 1.5rem;
     }
-}
+}/* Lille knap med lyserød kant (bruges til "Fjern" og "Slet") */
+ .card .remove-button,
+ .customer-card .remove-button {
+     width: auto;
+     padding: 0.4rem 0.9rem;
+     background: #fff;
+     color: #A3304F;
+     border: 2px solid #F4CAD6;
+     border-radius: 10px;
+     font-size: 0.8rem;
+ }
+
