@@ -6,37 +6,38 @@
     <title>Kunder – Admin</title>
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 
-<main>
-    <nav th:replace="~{fragments/adminMenu :: adminMenu}"></nav>
+<main class="admin-page">
+    <h1>Kunder</h1>
+    <nav th:replace="~{fragments/adminMenu :: adminMenu('customers')}"></nav>
 
-    <h1>Alle kunder</h1>
     <p class="error" th:if="${error}" th:text="${error}"></p>
-    <p th:if="${#lists.isEmpty(customers)}">Der er ingen kunder endnu.</p>
+    <p th:if="${customers != null and #lists.isEmpty(customers)}">Der er ingen kunder endnu.</p>
 
-    <section th:each="entry : ${customers}">
-        <h2 th:text="${entry.customer.email}"></h2>
-        <p>Saldo: <span th:text="${#numbers.formatDecimal(entry.customer.balance, 1, 2)}"></span> kr</p>
+    <section class="customer-card" th:each="entry : ${customers}">
+        <div class="customer-head">
+            <h2 th:text="${entry.customer.email}"></h2>
+            <p class="balance">Saldo: <strong th:text="${#numbers.formatDecimal(entry.customer.balance, 1, 0)} + ' kr'"></strong></p>
+        </div>
 
-        <p th:if="${#lists.isEmpty(entry.orders)}">Ingen ordrer endnu.</p>
+        <p class="muted" th:if="${#lists.isEmpty(entry.orders)}">Ingen ordrer endnu.</p>
 
-        <table th:unless="${#lists.isEmpty(entry.orders)}">
+        <table class="admin-table" th:unless="${#lists.isEmpty(entry.orders)}">
             <thead>
-            <tr><th>Ordre</th><th>Dato</th><th>Indhold</th><th>I alt</th><th>Betalt</th></tr>
+            <tr><th>Ordre</th><th>Dato</th><th>Pris</th><th>Status</th></tr>
             </thead>
             <tbody>
             <tr th:each="order : ${entry.orders}">
-                <td th:text="'#' + ${order.id}"></td>
-                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></td>
+                <td class="order-nr" th:text="'#' + ${order.id}"></td>
+                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${#numbers.formatDecimal(order.total, 1, 0)} + ' kr'"></td>
                 <td>
-                    <div th:each="line : ${order.lines}"
-                         th:text="${line.quantity} + ' x ' + ${line.bottom.name} + ' + ' + ${line.topping.name}"></div>
-                </td>
-                <td th:text="${#numbers.formatDecimal(order.total, 1, 2)} + ' kr'"></td>
-                <td th:text="${order.paid} ? 'Ja' : 'Nej'"></td>
+                    <span class="badge badge-unpaid" th:if="${not order.paid}">Ikke betalt</span>
+                    <span class="badge badge-waiting" th:if="${order.paid and not order.pickedUp}">Venter</span>
             </tr>
             </tbody>
         </table>
