@@ -23,14 +23,23 @@
                 <th>Cupcake</th>
                 <th>Antal</th>
                 <th>Pris</th>
+                <th></th>
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="line : ${cart}">
+            <tr th:each="line, stat : ${cart}">
                 <td th:text="${line.bottom.name + ' + ' + line.topping.name}"></td>
                 <td th:text="${line.quantity}"></td>
                 <td th:text="${#numbers.formatDecimal(line.totalPrice, 1, 2, 'COMMA') + ' kr'}"></td>
+                <td>
+                    <form method="post" action="/kurv/fjern">
+                        <input type="hidden" name="index" th:value="${stat.index}">
+                        <button type="submit" class="remove-button">Fjern</button>
+                    </form>
+                </td>
             </tr>
+
             </tbody>
         </table>
 

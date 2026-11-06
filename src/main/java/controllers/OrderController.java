@@ -23,6 +23,7 @@ public class OrderController {
         config.routes.get("/kurv", ctx -> showCart(ctx));
         config.routes.post("/kurv/tilfoej", ctx -> addToCart(ctx));
         config.routes.post("/kurv/betal", ctx -> pay(ctx));
+        config.routes.post("/kurv/fjern", ctx -> removeFromCart(ctx));
     }
 
     // Shows the cart with all orderlines and the total price
@@ -79,5 +80,13 @@ public class OrderController {
             ctx.attribute("total", orderService.calculateTotal(cart));
             ctx.render("cart.html");
         }
+    }
+    // Removes one orderline from the cart and shows the new cart again
+    private void removeFromCart(Context ctx) {
+        List<Orderline> cart = ctx.sessionAttribute("cart");
+        int index = ctx.formParamAsClass("index", Integer.class).get();
+
+        orderService.removeFromCart(cart, index);
+        ctx.redirect("/kurv");
     }
 }

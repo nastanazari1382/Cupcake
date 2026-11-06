@@ -67,4 +67,11 @@ public class OrderService {
 
         cart.add(new Orderline(bottom, topping, quantity));
     }
+
+    // Removes the orderline at that position from the cart. A empty cart or an invalid position does nothing.
+    public void removeFromCart(List<Orderline> cart, int index) {
+        if (cart != null && index >= 0 && index < cart.size()) {
+            cart.remove(index);
+        }
+    }
 }
