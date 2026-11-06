@@ -33,13 +33,11 @@
             <tbody>
             <tr th:each="order : ${entry.orders}">
                 <td class="order-nr" th:text="'#' + ${order.id}"></td>
-                <td th:text="${order.orderDateText}"></td>
+                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${#numbers.formatDecimal(order.total, 1, 0)} + ' kr'"></td>
                 <td>
                     <span class="badge badge-unpaid" th:if="${not order.paid}">Ikke betalt</span>
                     <span class="badge badge-waiting" th:if="${order.paid and not order.pickedUp}">Venter</span>
-                    <span class="badge badge-done" th:if="${order.paid and order.pickedUp}">Afhentet</span>
-                </td>
             </tr>
             </tbody>
         </table>
