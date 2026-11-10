@@ -19,7 +19,7 @@ Admin kan se alle ordrer og alle kunder med deres ordrer og slette en ordre. Bel
 
 ## Kom i gang
 1. Opret en database med navnet `cupcake` i pgAdmin.
-2. Kør `docs/cupcake.sql` i Query Tool (F5). Scriptet opretter tabellerne, bunde, toppe og to testbrugere.
+2. Kør `docs/database/cupcake.sql` i Query Tool (F5). Scriptet opretter tabellerne, bunde, toppe og to testbrugere.
 3. Tjek brugernavn og kode til databasen i `Main.java` (standard: `postgres` / `postgres`).
 4. Kør `Main` og åbn http://localhost:7070
 
@@ -36,17 +36,22 @@ src/main/java
 ├── controllers     routes og håndtering af requests
 ├── entities        Bottom, Topping, User, Order, Orderline
 ├── persistence     ConnectionPool og mappers (SQL)
+├── services        OrderService (regler for kurv og betaling)
+├── exceptions      DatabaseException
 └── Main            starter Javalin
 src/main/resources
 ├── public          CSS og billeder
 └── templates       Thymeleaf-sider (.html)
+src/test/java       unit tests og integrationstests af mapperne
 docs                domænemodel, ERD, navigationsdiagram og SQL-script
+rapport             rapport.pdf
 ```
 
 ## Dokumentation
-- Domænemodel: `docs/domaenemodel.puml`
-- ERD: `docs/erd.mmd`
-- Navigationsdiagram: `docs/`
+- Domænemodel: `docs/diagrams/domaenemodel.puml`
+- ERD: `docs/database/erd.mmd`
+- Navigationsdiagram: `docs/diagrams`
+- Rapport: `rapport/rapport.pdf`
 - User stories og kanban: GitHub Projects
 
 ## Arbejdsgang
